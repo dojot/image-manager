@@ -1,4 +1,4 @@
-requests==2.18.0
+requests==2.20.0
 urllib3==1.21.1
 PyJWT==1.5.3
 dredd-hooks==0.1.3
