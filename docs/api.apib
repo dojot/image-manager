@@ -1,9 +1,9 @@
 FORMAT: 1A
 HOST: http://localhost:8000
 
-# Image-manager
+# Image Manager
 
-Simple CRUD service for storing firmware image metadata and binaries
+Simple CRUD service for storing firmware image metadata and binaries.
 
 
 # Group Images
@@ -13,7 +13,7 @@ Simple CRUD service for storing firmware image metadata and binaries
 ### List All Images [GET /image{?label}]
 
 + Parameters
-    + label: "xyz" (string, optional) Filter returned images by given label
+    + label: "xyz" (string, optional) - Filter returned images by given label.
 
 + Request
     + Headers
@@ -51,8 +51,7 @@ Simple CRUD service for storing firmware image metadata and binaries
 
 + Response 401 (application/json)
 
-    Returned when there is no Authorization header or if it contains an invalid
-    value.
+    Returned when there is no Authorization header or if it contains an invalid value.
 
     + Body
 
@@ -65,11 +64,12 @@ Simple CRUD service for storing firmware image metadata and binaries
 ### Create a New Image [POST]
 
 Creates a new image based on a JSON object containing the following metadata.
-All fields are required, images with missing metadata fields will return an error
+All fields are required, images with missing metadata fields will return an error.
 
 
-+ label (string) - An informative human-readable label
-+ fw_version (string) - FW Semantic versioning info
++ Parameters
+    + label: (string) - An informative human-readable label.
+    + fw_version: (string) - FW Semantic versioning info.
 
 + Request (application/json)
     + Headers
@@ -87,7 +87,7 @@ All fields are required, images with missing metadata fields will return an erro
 + Response 201 (application/json)
     + Headers
 
-            Location: /image/asdasdasdasdasdas
+            Location: /image/test_image
 
     + Schema
 
@@ -115,7 +115,7 @@ All fields are required, images with missing metadata fields will return an erro
 
 + Response 400 (application/json)
 
-    Returned when there is missing fields in creation request
+    Returned when there is missing fields in creation request.
 
     + Body
 
@@ -130,8 +130,7 @@ All fields are required, images with missing metadata fields will return an erro
 
 + Response 401 (application/json)
 
-    Returned when there is no Authorization header or if it contains an invalid
-    value.
+    Returned when there is no Authorization header or if it contains an invalid value.
 
     + Body
 
@@ -159,8 +158,7 @@ All fields are required, images with missing metadata fields will return an erro
 
 + Response 401 (application/json)
 
-    Returned when there is no Authorization header or if it contains an invalid
-    value.
+    Returned when there is no Authorization header or if it contains an invalid value.
 
     + Body
 
@@ -170,11 +168,10 @@ All fields are required, images with missing metadata fields will return an erro
             }
 
 
-
 ## Images [/image/{image_id}]
 
 + Parameters
-    + image_id: `b60aa5e9-cbe6-4b51-b76c-08cf8273db07` (guid) - Unique ID
+    + image_id: `b60aa5e9-cbe6-4b51-b76c-08cf8273db07` (guid) - Unique ID.
 
 ### Retrieve a single image metadata [GET]
 + Request
@@ -198,8 +195,7 @@ All fields are required, images with missing metadata fields will return an erro
 
 + Response 401 (application/json)
 
-    Returned when there is no Authorization header or if it contains an invalid
-    value.
+    Returned when there is no Authorization header or if it contains an invalid value.
 
     + Body
 
@@ -236,8 +232,7 @@ All fields are required, images with missing metadata fields will return an erro
 
 + Response 401 (application/json)
 
-    Returned when there is no Authorization header or if it contains an invalid
-    value.
+    Returned when there is no Authorization header or if it contains an invalid value.
 
     + Body
 
@@ -250,9 +245,8 @@ All fields are required, images with missing metadata fields will return an erro
 ## Image Binaries [/image/{image_id}/binary]
 All files should have a ".hex" extension.
 
-
 + Parameters
-    + image_id: `b60aa5e9-cbe6-4b51-b76c-08cf8273db07` (guid) - Unique ID
+    + image_id: `b60aa5e9-cbe6-4b51-b76c-08cf8273db07` (guid) - Unique ID.
 
 + Model (multipart/form-data;boundary=BOUNDARY)
     + Headers
@@ -340,7 +334,7 @@ All files should have a ".hex" extension.
 ### Add binary to an existing image [POST]
 
 + Parameters
-    + image_id: `51b39543-9de1-4751-9fe2-48c8d6038ba1` (guid) - Unique ID
+    + image_id: `51b39543-9de1-4751-9fe2-48c8d6038ba1` (guid) - Unique ID.
 
 + Request
     [Image Binaries][]
@@ -361,8 +355,7 @@ All files should have a ".hex" extension.
 
 + Response 401 (application/json)
 
-    Returned when there is no Authorization header or if it contains an invalid
-    value.
+    Returned when there is no Authorization header or if it contains an invalid value.
 
     + Body
 
