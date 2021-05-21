@@ -1,7 +1,8 @@
 import base64
 import json
 from sqlalchemy.sql import exists, select, text
-from minio.error import (ResponseError, BucketAlreadyOwnedByYou, BucketAlreadyExists)
+from minio.error import (
+    ResponseError, BucketAlreadyOwnedByYou, BucketAlreadyExists)
 from .utils import HTTPRequestError
 
 
@@ -16,6 +17,7 @@ def decode_base64(data):
     if missing_padding != 0:
         data += '=' * (4 - missing_padding)
     return base64.decodebytes(data.encode()).decode()
+
 
 def get_allowed_service(token):
     """
@@ -32,9 +34,17 @@ def get_allowed_service(token):
     payload = token.split('.')[1]
     try:
         data = json.loads(decode_base64(payload))
-        return data['service']
+        # to ensure backward compatibility
+        if ('service' in data):
+            return data['service']
+        elif ('iss' in data):
+            iss = data['iss']
+            return iss[iss.rindex('/') + 1:]
+        else:
+            return None
     except Exception as ex:
-        raise ValueError("Invalid authentication token payload - not json object", ex)
+        raise ValueError(
+            "Invalid authentication token payload - not json object", ex)
 
 
 def create_tenant(tenant, db):
