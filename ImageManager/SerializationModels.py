@@ -26,7 +26,7 @@ class ImageSchema(Schema):
 
 image_schema = ImageSchema()
 
-ALLOWED_EXTENSIONS = set(['hex'])
+ALLOWED_EXTENSIONS = set(['hex', 'bin'])
 
 
 def allowed_file(filename):
